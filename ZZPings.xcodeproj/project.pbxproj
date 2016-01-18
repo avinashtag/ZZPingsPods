@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		AD7DD1971C4D51E000BBB7C7 /* ZZPings.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD1961C4D51E000BBB7C7 /* ZZPings.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD7DD1A11C4D521E00BBB7C7 /* ZZPing.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD19E1C4D521E00BBB7C7 /* ZZPing.h */; settings = {ASSET_TAGS = (); }; };
+		AD7DD1A21C4D521E00BBB7C7 /* ZZPing.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7DD19F1C4D521E00BBB7C7 /* ZZPing.m */; settings = {ASSET_TAGS = (); }; };
+		AD7DD1A31C4D521E00BBB7C7 /* ICMPHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD1A01C4D521E00BBB7C7 /* ICMPHeader.h */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AD7DD1931C4D51E000BBB7C7 /* ZZPings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZPings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7DD1961C4D51E000BBB7C7 /* ZZPings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZPings.h; sourceTree = "<group>"; };
 		AD7DD1981C4D51E000BBB7C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD7DD19E1C4D521E00BBB7C7 /* ZZPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPing.h; sourceTree = "<group>"; };
+		AD7DD19F1C4D521E00BBB7C7 /* ZZPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPing.m; sourceTree = "<group>"; };
+		AD7DD1A01C4D521E00BBB7C7 /* ICMPHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICMPHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,9 @@
 			isa = PBXGroup;
 			children = (
 				AD7DD1961C4D51E000BBB7C7 /* ZZPings.h */,
+				AD7DD19E1C4D521E00BBB7C7 /* ZZPing.h */,
+				AD7DD19F1C4D521E00BBB7C7 /* ZZPing.m */,
+				AD7DD1A01C4D521E00BBB7C7 /* ICMPHeader.h */,
 				AD7DD1981C4D51E000BBB7C7 /* Info.plist */,
 			);
 			path = ZZPings;
@@ -60,6 +69,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD7DD1971C4D51E000BBB7C7 /* ZZPings.h in Headers */,
+				AD7DD1A11C4D521E00BBB7C7 /* ZZPing.h in Headers */,
+				AD7DD1A31C4D521E00BBB7C7 /* ICMPHeader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD7DD1A21C4D521E00BBB7C7 /* ZZPing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +240,7 @@
 		AD7DD19C1C4D51E000BBB7C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -244,6 +257,7 @@
 		AD7DD19D1C4D51E000BBB7C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
