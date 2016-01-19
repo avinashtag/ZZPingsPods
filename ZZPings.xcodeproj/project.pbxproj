@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		AD13F9BB1C4D5CFD006BAE5B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD13F9BA1C4D5CFD006BAE5B /* CFNetwork.framework */; };
 		AD7DD1971C4D51E000BBB7C7 /* ZZPings.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD1961C4D51E000BBB7C7 /* ZZPings.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD7DD1A11C4D521E00BBB7C7 /* ZZPing.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD19E1C4D521E00BBB7C7 /* ZZPing.h */; settings = {ASSET_TAGS = (); }; };
-		AD7DD1A21C4D521E00BBB7C7 /* ZZPing.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7DD19F1C4D521E00BBB7C7 /* ZZPing.m */; settings = {ASSET_TAGS = (); }; };
-		AD7DD1A31C4D521E00BBB7C7 /* ICMPHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD1A01C4D521E00BBB7C7 /* ICMPHeader.h */; settings = {ASSET_TAGS = (); }; };
-		ADCDBA0A1C4D5ADA00B7D8B9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = ADCDBA091C4D5ADA00B7D8B9 /* LICENSE */; settings = {ASSET_TAGS = (); }; };
+		AD7DD1A11C4D521E00BBB7C7 /* ZZPing.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD19E1C4D521E00BBB7C7 /* ZZPing.h */; };
+		AD7DD1A21C4D521E00BBB7C7 /* ZZPing.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7DD19F1C4D521E00BBB7C7 /* ZZPing.m */; };
+		AD7DD1A31C4D521E00BBB7C7 /* ICMPHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD1A01C4D521E00BBB7C7 /* ICMPHeader.h */; };
+		ADCDBA0A1C4D5ADA00B7D8B9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = ADCDBA091C4D5ADA00B7D8B9 /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
