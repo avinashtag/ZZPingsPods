@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A0D90E91C4E06E90075F8AB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6A0D90E81C4E06E90075F8AB /* LICENSE */; };
 		AD13F9BB1C4D5CFD006BAE5B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD13F9BA1C4D5CFD006BAE5B /* CFNetwork.framework */; };
 		AD7DD1971C4D51E000BBB7C7 /* ZZPings.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD1961C4D51E000BBB7C7 /* ZZPings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD7DD1A11C4D521E00BBB7C7 /* ZZPing.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD19E1C4D521E00BBB7C7 /* ZZPing.h */; };
 		AD7DD1A21C4D521E00BBB7C7 /* ZZPing.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7DD19F1C4D521E00BBB7C7 /* ZZPing.m */; };
 		AD7DD1A31C4D521E00BBB7C7 /* ICMPHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD1A01C4D521E00BBB7C7 /* ICMPHeader.h */; };
-		ADCDBA0A1C4D5ADA00B7D8B9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = ADCDBA091C4D5ADA00B7D8B9 /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A0D90E81C4E06E90075F8AB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		AD13F9BA1C4D5CFD006BAE5B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		AD7DD1931C4D51E000BBB7C7 /* ZZPings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZPings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7DD1961C4D51E000BBB7C7 /* ZZPings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZPings.h; sourceTree = "<group>"; };
@@ -23,7 +24,6 @@
 		AD7DD19E1C4D521E00BBB7C7 /* ZZPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPing.h; sourceTree = "<group>"; };
 		AD7DD19F1C4D521E00BBB7C7 /* ZZPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPing.m; sourceTree = "<group>"; };
 		AD7DD1A01C4D521E00BBB7C7 /* ICMPHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICMPHeader.h; sourceTree = "<group>"; };
-		ADCDBA091C4D5ADA00B7D8B9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +58,7 @@
 		AD7DD1951C4D51E000BBB7C7 /* ZZPings */ = {
 			isa = PBXGroup;
 			children = (
-				ADCDBA091C4D5ADA00B7D8B9 /* LICENSE */,
+				6A0D90E81C4E06E90075F8AB /* LICENSE */,
 				AD7DD1961C4D51E000BBB7C7 /* ZZPings.h */,
 				AD7DD19E1C4D521E00BBB7C7 /* ZZPing.h */,
 				AD7DD19F1C4D521E00BBB7C7 /* ZZPing.m */,
@@ -139,7 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADCDBA0A1C4D5ADA00B7D8B9 /* LICENSE in Resources */,
+				6A0D90E91C4E06E90075F8AB /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

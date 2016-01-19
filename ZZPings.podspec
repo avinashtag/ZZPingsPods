@@ -17,10 +17,10 @@ Pod::Spec.new do |s|
 
   s.name         = "ZZPings"
   s.version      = "1.0.1"
-  s.summary      = "A short description of ZZPings."
+  s.summary      = "ZZPings  return rtt and ttl for you and you are able to tell him the count of packets to send ."
 
 
-  s.homepage     = "https://avinashtag@github.com/avinashtag/ZZPings."
+  s.homepage     = "https://avinashtag@github.com/avinashtag/ZZPings"
 
   s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
