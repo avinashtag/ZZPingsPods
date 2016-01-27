@@ -22,7 +22,7 @@
 
 @interface ZZPing : NSObject
 
-typedef void(^PingDidStartWithAddress)(ZZPingDetails *ping, NSData *packet);
+typedef void(^PingDidStartWithAddress)(ZZPingDetails *ping, NSString *hostName);
 typedef void(^PingDidSendPacket)(ZZPingDetails *ping);
 typedef void(^PingDidReceivePingResponsePacket)(ZZPingDetails *ping);
 typedef void(^PingDidReceiveUnexpectedPacket)(ZZPingDetails *ping);

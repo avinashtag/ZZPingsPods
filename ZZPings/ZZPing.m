@@ -453,7 +453,7 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
         CFRunLoopAddSource(CFRunLoopGetCurrent(), rls, kCFRunLoopDefaultMode);
         
         CFRelease(rls);
-        self.pingDidStartWithAddress ? self.pingDidStartWithAddress(nil, self.hostAddress):nil ;
+        self.pingDidStartWithAddress ? self.pingDidStartWithAddress(nil, [self getHostname]):nil ;
     }
     assert(fd == -1);
 }
