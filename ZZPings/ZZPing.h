@@ -42,6 +42,10 @@ typedef void(^PingSendFinalReport)(NSArray *pings);
 @property (nonatomic, copy) PingDidFailWithTimeout              pingDidFailWithTimeout;
 @property (nonatomic, copy) PingSendFinalReport                 pingSendFinalReport;
 
+@property (nonatomic, strong) NSNumber *dnf;
+@property (nonatomic, strong) NSNumber *sendReport;
+@property (nonatomic, strong) NSNumber *wait;
+@property (nonatomic, strong) NSString *serviceId;
 
 // Called after the   ATPing has successfully started up.  After this callback, you
 // can start sending pings via -sendPingWithData:

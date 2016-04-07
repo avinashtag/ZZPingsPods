@@ -261,7 +261,6 @@ static dispatch_source_t timer;
 
 - (void)dealloc{
     
-    [self stop];
     assert(self->_host == NULL);
     assert(self->_socket == NULL);
 }
@@ -450,7 +449,7 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
         rls = CFSocketCreateRunLoopSource(NULL, self->_socket, 0);
         assert(rls != NULL);
         
-        CFRunLoopAddSource(CFRunLoopGetCurrent(), rls, kCFRunLoopDefaultMode);
+        CFRunLoopAddSource(CFRunLoopGetMain(), rls, kCFRunLoopDefaultMode);
         
         CFRelease(rls);
         self.pingDidStartWithAddress ? self.pingDidStartWithAddress(nil, [self getHostname]):nil ;
@@ -739,7 +738,7 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
             const struct ICMPHeader *headerPointer = [[self class] icmpInPacket:packet];
             NSUInteger seqNo = (NSUInteger)OSSwapBigToHostInt16(headerPointer->sequenceNumber);
             NSNumber *key = @(seqNo);
-            ZZPingDetails *ping = (ZZPingDetails *)self.pings[[key stringValue]];
+            ZZPingDetails *ping = (ZZPingDetails *)weakself.pings[[key stringValue]];
             ping.receiveDate = [NSDate date];
             ping.host = [weakself getHostname];
             if (success) {
@@ -751,8 +750,15 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1*NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
                 if (weakself.packetCount==weakself.nextSequenceNumber) {
                     weakself.pingSendFinalReport? weakself.pingSendFinalReport([weakself.pings allValues]):nil;
-                    [weakself.pings removeAllObjects];
-                    [weakself stop];
+                    [self stopHostResolution];
+                    [self stopDataTransfer];
+                    
+                    // If we were started with a host name, junk the host address on stop.  If the
+                    // client calls -start again, we'll re-resolve the host name.
+                    
+                    if (self.hostName != nil) {
+                        self.hostAddress = NULL;
+                    }
                 }
                 else{
                     [weakself sendPing];
