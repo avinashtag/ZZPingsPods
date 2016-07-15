@@ -92,10 +92,10 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen)
 
 -(NSNumber *)latency {
     if (self.sendDate) {
-        return  @(([self.receiveDate timeIntervalSinceDate:self.sendDate]) *1000);
+        _latency =  @(([self.receiveDate timeIntervalSinceDate:self.sendDate]) *1000);
     }
     else {
-        return @(0);
+        _latency =  @(0);
     }
 }
 
@@ -142,7 +142,6 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen)
 
 @property (nonatomic, copy,   readwrite) NSData *           hostAddress;
 @property (nonatomic, assign, readwrite) uint16_t           nextSequenceNumber;
-@property (nonatomic, strong)__block NSMutableDictionary           *pings;
 
 - (void)stopHostResolution;
 - (void)stopDataTransfer;
@@ -165,6 +164,7 @@ static NSUInteger       const kDefaultTTL           =   49;
 static NSUInteger       const kDefaultPacketCount   =   1;
 static NSTimeInterval   const kDefaultTimeout       =   60.0;
 static dispatch_source_t timer;
+static NSArray *prev = nil;
 
 @synthesize hostName           = _hostName;
 @synthesize hostAddress        = _hostAddress;
@@ -234,6 +234,21 @@ static dispatch_source_t timer;
     return [[[self.pings allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@max.self"];
 }
 
+
+
+- (NSNumber *) latencyPerSec{
+
+    if (!prev) {
+        prev = self.pings.allKeys;
+//        return [[[self.pings allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@avg.self"];
+    }
+    else{
+        NSMutableDictionary *temp = [[NSMutableDictionary alloc]initWithDictionary:self.pings];
+        [temp removeObjectsForKeys:prev];
+//        return [[[temp allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@avg.self"];
+    }
+    return @0;
+}
 
 #pragma mark memory
 
@@ -307,9 +322,6 @@ static dispatch_source_t timer;
     self.pingDidFailWithTimeout = timeout;
 }
 
-- (void)didSendFinalReport:(PingSendFinalReport)report{
-    self.pingSendFinalReport = report;
-}
 
 #pragma mark ICMP Headers
 
@@ -747,23 +759,7 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
             else {
                 weakself.pingDidReceiveUnexpectedPacket ? weakself.pingDidReceiveUnexpectedPacket(ping):nil;
             }
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1*NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
-                if (weakself.packetCount==weakself.nextSequenceNumber) {
-                    weakself.pingSendFinalReport? weakself.pingSendFinalReport([weakself.pings allValues]):nil;
-                    [self stopHostResolution];
-                    [self stopDataTransfer];
-                    
-                    // If we were started with a host name, junk the host address on stop.  If the
-                    // client calls -start again, we'll re-resolve the host name.
-                    
-                    if (self.hostName != nil) {
-                        self.hostAddress = NULL;
-                    }
-                }
-                else{
-                    [weakself sendPing];
-                }
-            });
+            [weakself sendPing];
         }];
     }
     else {
@@ -863,7 +859,6 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
     _pingDidReceivePingResponsePacket = nil;
     _pingDidReceiveUnexpectedPacket = nil;
     _pingDidFailWithTimeout = nil;
-    _pingSendFinalReport = nil;
     _hostName = nil;
     _hostAddress = nil;
     _pings = nil;

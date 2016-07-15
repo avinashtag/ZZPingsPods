@@ -15,7 +15,7 @@
 @property (assign, nonatomic) NSUInteger            payloadSize;
 @property (assign, nonatomic) NSUInteger            ttl;
 @property (strong, nonatomic) NSString              *host;
-@property (strong, nonatomic, readonly) NSNumber    *latency;
+@property (strong, nonatomic) NSNumber    *latency;
 
 @end
 
@@ -40,7 +40,6 @@ typedef void(^PingSendFinalReport)(NSArray *pings);
 @property (nonatomic, copy) PingDidReceivePingResponsePacket    pingDidReceivePingResponsePacket;
 @property (nonatomic, copy) PingDidReceiveUnexpectedPacket      pingDidReceiveUnexpectedPacket;
 @property (nonatomic, copy) PingDidFailWithTimeout              pingDidFailWithTimeout;
-@property (nonatomic, copy) PingSendFinalReport                 pingSendFinalReport;
 
 @property (nonatomic, strong) NSNumber *dnf;
 @property (nonatomic, strong) NSNumber *sendReport;
@@ -76,14 +75,14 @@ typedef void(^PingSendFinalReport)(NSArray *pings);
 // look like a response to one of our pings.
 - (void)didReceiveUnexpectedPacket:(PingDidReceiveUnexpectedPacket)receiveResponse;
 
-- (void)didSendFinalReport:(PingSendFinalReport)report;
+
 
 - (void)didTimeout:(PingDidFailWithTimeout )timeout;
 
 
 + (ZZPing *)  pingWithHostName:(NSString *)hostName;        // chooses first IPv4 address
 + (ZZPing *)  pingWithHostAddress:(NSString *)hostAddress;    // contains (struct sockaddr)
-
+- (NSNumber *) latencyPerSec;
 
 @property (nonatomic, copy,   readonly ) NSString *             hostName;
 @property (nonatomic, copy,   readonly ) NSData *               hostAddress;
@@ -97,6 +96,7 @@ typedef void(^PingSendFinalReport)(NSArray *pings);
 @property (strong, nonatomic, readonly) NSNumber                *minimumLatency;
 @property (strong, nonatomic, readonly) NSNumber                *maximumLatency;
 
+@property (nonatomic, strong)__block NSMutableDictionary           *pings;
 
 - (void)start;
 // Starts the pinger object pinging.  You should call this after
