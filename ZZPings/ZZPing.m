@@ -91,12 +91,13 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen)
 }
 
 -(NSNumber *)latency {
-    if (self.sendDate) {
+    if (self.sendDate && self.receiveDate) {
         _latency =  @(([self.receiveDate timeIntervalSinceDate:self.sendDate]) *1000);
     }
     else {
         _latency =  @(0);
     }
+    return _latency;
 }
 
 #pragma mark - copying
@@ -240,14 +241,13 @@ static NSArray *prev = nil;
 
     if (!prev) {
         prev = self.pings.allKeys;
-//        return [[[self.pings allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@avg.self"];
+        return [[[self.pings allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@avg.self"];
     }
     else{
-        NSMutableDictionary *temp = [[NSMutableDictionary alloc]initWithDictionary:self.pings];
+        NSMutableDictionary *temp = [[NSMutableDictionary alloc]initWithDictionary:self.pings copyItems:YES];
         [temp removeObjectsForKeys:prev];
-//        return [[[temp allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@avg.self"];
+        return [[[temp allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@avg.self"];
     }
-    return @0;
 }
 
 #pragma mark memory
