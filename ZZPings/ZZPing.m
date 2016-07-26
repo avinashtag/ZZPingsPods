@@ -851,7 +851,9 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
     if (self.hostName != nil) {
         self.hostAddress = NULL;
     }
-    
+}
+
+-(void) destroy{
     _pingDidStartWithAddress = nil;
     _pingDidFailWithError = nil;
     _pingDidSendPacket = nil;
@@ -862,7 +864,6 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
     _hostName = nil;
     _hostAddress = nil;
     _pings = nil;
-
 }
 
 @end
