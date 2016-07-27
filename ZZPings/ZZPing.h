@@ -15,7 +15,7 @@
 @property (assign, nonatomic) NSUInteger            payloadSize;
 @property (assign, nonatomic) NSUInteger            ttl;
 @property (strong, nonatomic) NSString              *host;
-@property (strong, nonatomic) NSNumber    *latency;
+@property (assign, nonatomic) NSTimeInterval    latency;
 
 @end
 
@@ -30,7 +30,8 @@ typedef void(^PingDidFailToSendPacket)(ZZPingDetails *ping, NSError *error);
 typedef void(^PingDidTimeoutToSendPacket)(ZZPingDetails *ping);
 typedef void(^PingDidFailWithError)(NSError *error);
 typedef void(^PingDidFailWithTimeout)(ZZPingDetails *ping);
-typedef void(^PingSendFinalReport)(NSArray *pings);
+typedef void(^PingDidSendFinalReport)(NSNumber *latency);
+typedef void(^PingDidSendReport)(NSNumber *latency);
 
 
 @property (nonatomic, copy) PingDidStartWithAddress             pingDidStartWithAddress;
@@ -40,6 +41,8 @@ typedef void(^PingSendFinalReport)(NSArray *pings);
 @property (nonatomic, copy) PingDidReceivePingResponsePacket    pingDidReceivePingResponsePacket;
 @property (nonatomic, copy) PingDidReceiveUnexpectedPacket      pingDidReceiveUnexpectedPacket;
 @property (nonatomic, copy) PingDidFailWithTimeout              pingDidFailWithTimeout;
+@property (nonatomic, copy) PingDidSendReport                   pingDidSendReport;
+@property (nonatomic, copy) PingDidSendFinalReport              pingSendFinalReport;
 
 @property (nonatomic, strong) NSNumber *dnf;
 @property (nonatomic, strong) NSNumber *sendReport;
@@ -75,6 +78,8 @@ typedef void(^PingSendFinalReport)(NSArray *pings);
 // look like a response to one of our pings.
 - (void)didReceiveUnexpectedPacket:(PingDidReceiveUnexpectedPacket)receiveResponse;
 
+- (void)didSendFinalReport:(PingDidSendFinalReport)finalReport;
+- (void)didSendReport:(PingDidSendReport)report;
 
 
 - (void)didTimeout:(PingDidFailWithTimeout )timeout;

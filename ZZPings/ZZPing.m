@@ -31,8 +31,7 @@
 
 @interface ZZPingDetails ()
 
-@property (strong, nonatomic) NSDate                *sendDate;
-@property (strong, nonatomic) NSDate                *receiveDate;
+@property (assign, nonatomic) NSTimeInterval                sendTimeStamp;
 
 @end
 
@@ -90,16 +89,6 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen)
     _host = host;
 }
 
--(NSNumber *)latency {
-    if (self.sendDate && self.receiveDate) {
-        _latency =  @(([self.receiveDate timeIntervalSinceDate:self.sendDate]) *1000);
-    }
-    else {
-        _latency =  @(0);
-    }
-    return _latency;
-}
-
 #pragma mark - copying
 
 -(id)copyWithZone:(NSZone *)zone {
@@ -108,8 +97,8 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen)
     copy.payloadSize = self.payloadSize;
     copy.ttl = self.ttl;
     copy.host = [self.host copy];
-    copy.sendDate = [self.sendDate copy];
-    copy.receiveDate = [self.receiveDate copy];
+    copy.sendTimeStamp = self.sendTimeStamp;
+    copy.latency = self.latency;
     return copy;
 }
 
@@ -123,15 +112,13 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen)
 
 -(void)dealloc {
     self.host = nil;
-    self.sendDate = nil;
-    self.receiveDate = nil;
 }
 
 #pragma mark - description
 
 -(NSString *)description {
 //    64 bytes from 10.13.148.148: icmp_seq=0 ttl=64 time=119.609 ms
-    return [NSString stringWithFormat:@"%lu bytes icmp_seq=%lu  ttl=%lu  rtt=%0.3fms", (unsigned long)self.payloadSize, (unsigned long)self.sequenceNumber, (unsigned long)self.ttl, [self.latency doubleValue]];
+    return [NSString stringWithFormat:@"%lu bytes icmp_seq=%lu  ttl=%lu  rtt=%0.3fms", (unsigned long)self.payloadSize, (unsigned long)self.sequenceNumber, (unsigned long)self.ttl, self.latency];
 }
 
 
@@ -224,15 +211,15 @@ static NSArray *prev = nil;
 }
 
 - (NSNumber *)minimumLatency{
-    return [[[self.pings allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@min.self"];
+    return [[[self.pings allValues]valueForKeyPath:@"latency"] valueForKeyPath:@"@min.self"];
 }
 
 - (NSNumber *)averageLatency{
-    return [[[self.pings allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@avg.self"];
+    return [[[self.pings allValues]valueForKeyPath:@"latency"] valueForKeyPath:@"@avg.self"];
 }
 
 - (NSNumber *)maximumLatency{
-    return [[[self.pings allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@max.self"];
+    return [[[self.pings allValues]valueForKeyPath:@"latency"] valueForKeyPath:@"@max.self"];
 }
 
 
@@ -241,12 +228,12 @@ static NSArray *prev = nil;
 
     if (!prev) {
         prev = self.pings.allKeys;
-        return [[[self.pings allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@avg.self"];
+        return [[[self.pings allValues]valueForKeyPath:@"latency"] valueForKeyPath:@"@avg.self"];
     }
     else{
         NSMutableDictionary *temp = [[NSMutableDictionary alloc]initWithDictionary:self.pings copyItems:YES];
         [temp removeObjectsForKeys:prev];
-        return [[[temp allValues]valueForKeyPath:@"self.latency"] valueForKeyPath:@"@avg.self"];
+        return [[[temp allValues]valueForKeyPath:@"latency"] valueForKeyPath:@"@avg.self"];
     }
 }
 
@@ -321,6 +308,15 @@ static NSArray *prev = nil;
 - (void)didTimeout:(PingDidFailWithTimeout )timeout{
     self.pingDidFailWithTimeout = timeout;
 }
+
+- (void)didSendFinalReport:(PingDidSendFinalReport)finalReport{
+    self.pingSendFinalReport = finalReport;
+}
+
+- (void)didSendReport:(PingDidSendReport)report{
+    self.pingDidSendReport = report;
+}
+
 
 
 #pragma mark ICMP Headers
@@ -592,6 +588,27 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
 
 - (void)sendPingWithData:(NSData *)data{
     
+    __weak typeof(self) weakself = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1*NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
+        if (weakself.packetCount==weakself.nextSequenceNumber) {
+            weakself.pingSendFinalReport? weakself.pingSendFinalReport([weakself maximumLatency]):nil;
+            [self stopHostResolution];
+            [self stopDataTransfer];
+            
+            // If we were started with a host name, junk the host address on stop.  If the
+            // client calls -start again, we'll re-resolve the host name.
+            
+            if (self.hostName != nil) {
+                self.hostAddress = NULL;
+            }
+        }
+        else{
+            [self sendPingWithData:nil];
+        }
+    });
+
+    
+    
     ZZPingDetails *ping = [[ZZPingDetails alloc]init];
     
     ping.sequenceNumber = self.nextSequenceNumber;
@@ -633,7 +650,6 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
     } else {
         
         [self timeoutProcess];
-        ping.sendDate = [NSDate date];
 
         bytesSent = sendto(
                            CFSocketGetNative(self->_socket),
@@ -652,7 +668,8 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
     // Handle the results of the send.
     
     if ( (bytesSent > 0) && (((NSUInteger) bytesSent) == [packet length]) ) {
-        
+        ping.sendTimeStamp = [[NSDate date] timeIntervalSince1970] *1000;
+
         // Complete success.  Tell the client.
         
         self.pingDidSendPacket ? self.pingDidSendPacket(ping):nil;
@@ -743,6 +760,12 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
         packet = [NSMutableData dataWithBytes:buffer length:(NSUInteger) bytesRead];
         assert(packet != nil);
         
+        const struct ICMPHeader *headerPointers = [[self class] icmpInPacket:packet];
+        NSUInteger seqNos = (NSUInteger)OSSwapBigToHostInt16(headerPointers->sequenceNumber);
+        NSNumber *keys = @(seqNos);
+        ZZPingDetails *pings = (ZZPingDetails *)self.pings[[keys stringValue]];
+        NSTimeInterval lat =  ([[NSDate date] timeIntervalSince1970] * 1000) - pings.sendTimeStamp;
+        
         // We got some data, pass it up to our client.
         __weak typeof(self) weakself = self;
         [self validatePacket:packet :^(BOOL success) {
@@ -751,15 +774,20 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
             NSUInteger seqNo = (NSUInteger)OSSwapBigToHostInt16(headerPointer->sequenceNumber);
             NSNumber *key = @(seqNo);
             ZZPingDetails *ping = (ZZPingDetails *)weakself.pings[[key stringValue]];
-            ping.receiveDate = [NSDate date];
             ping.host = [weakself getHostname];
-            if (success) {
-                weakself.pingDidReceivePingResponsePacket ? weakself.pingDidReceivePingResponsePacket(ping):nil;
-            }
-            else {
-                weakself.pingDidReceiveUnexpectedPacket ? weakself.pingDidReceiveUnexpectedPacket(ping):nil;
-            }
-            [weakself sendPing];
+            
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                if (success) {
+                    ping.latency =lat ;
+                    weakself.pingDidReceivePingResponsePacket ? weakself.pingDidReceivePingResponsePacket(ping):nil;
+                    weakself.pingDidSendReport ? weakself.pingDidSendReport(@(ping.latency)): nil;
+                }
+                else {
+                    weakself.pingDidReceiveUnexpectedPacket ? weakself.pingDidReceiveUnexpectedPacket(ping):nil;
+                }
+
+            });
+            
         }];
     }
     else {
