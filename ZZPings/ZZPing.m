@@ -592,8 +592,8 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1*NSEC_PER_SEC ), dispatch_get_main_queue(), ^{
         if (weakself.packetCount==weakself.nextSequenceNumber) {
             weakself.pingSendFinalReport? weakself.pingSendFinalReport([weakself maximumLatency]):nil;
-            [self stopHostResolution];
-            [self stopDataTransfer];
+//            [self stopHostResolution];
+//            [self stopDataTransfer];
             
             // If we were started with a host name, junk the host address on stop.  If the
             // client calls -start again, we'll re-resolve the host name.
@@ -861,7 +861,7 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
         }
 
     } @catch (NSException *exception) {
-        
+        NSLog(@"NSException : %@",exception);
     } @finally {
         
     }
