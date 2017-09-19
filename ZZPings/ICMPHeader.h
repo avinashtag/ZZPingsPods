@@ -46,6 +46,10 @@ enum {
     kICMPTypeEchoRequest = 8            // code is always 0
 };
 
+enum {
+    kICMPv6TypeEchoRequest = 128,
+    kICMPv6TypeEchoReply   = 129
+};
 // ICMP header structure:
 
 struct ICMPHeader {

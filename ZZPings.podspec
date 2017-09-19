@@ -27,8 +27,8 @@ Pod::Spec.new do |s|
 
 
   s.author             = { "Avinash Tag" => "avi.tag@gmail.com" }
-   s.platform     = :ios
    s.ios.deployment_target = "8.1"
+s.osx.deployment_target = "10.10"
 
 
 
@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
 
 
 
-s.frameworks = "UIKit", "CFNetwork"
+s.frameworks = "CFNetwork"
 
 s.requires_arc = true
 

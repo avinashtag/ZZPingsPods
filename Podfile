@@ -7,3 +7,6 @@ target 'ZZPings' do
 
 end
 
+target 'ZZPingsMac' do
+    
+end

@@ -9,10 +9,25 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ZZPingsMac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>AD7DD1921C4D51E000BBB7C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B93EA3E61EA8CA0D00B61EF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B93EA3F51EADC96100B61EF1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
