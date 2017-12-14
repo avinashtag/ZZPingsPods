@@ -282,7 +282,7 @@ static NSArray *prev = nil;
     self = [super init];
     if (self != nil) {
         self->_hostName    = [hostName copy];
-        self->_hostAddress = [convertAddressToData(address,NO) copy];
+        self->_hostAddress = [convertAddressToData(address,[address containsString:@":"]) copy];
 //        [[self convertToAddress:address] copy];
         self->_identifier  = (uint16_t) arc4random();
         self.pings = [[NSMutableDictionary alloc]init];
@@ -458,6 +458,7 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
             }
 //            assert(NO);
             // fall through
+            break;
         default: {
             err = EPROTONOSUPPORT;
         } break;
@@ -691,7 +692,7 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
             packet = pingPacketWithType(kICMPv6TypeEchoRequest, payload,NO);
         } break;
         default: {
-            assert(NO);
+            //assert(NO);
         } break;
     }
     // Send the packet.
@@ -812,7 +813,16 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
         packet = [NSMutableData dataWithBytes:buffer length:(NSUInteger) bytesRead];
         assert(packet != nil);
         
-        const struct ICMPHeader *headerPointers = [[self class] icmpInPacket:packet];
+        const struct ICMPHeader *headerPointers;
+        
+        if (!self.isIPv6) {
+            headerPointers = [[self class] icmpInPacket:packet];
+        } else {
+            headerPointers = (const struct ICMPHeader *)[packet bytes];
+        }
+
+        
+//        const struct ICMPHeader *headerPointers = [[self class] icmpInPacket:packet];
         NSUInteger seqNos = (NSUInteger)OSSwapBigToHostInt16(headerPointers->sequenceNumber);
         NSNumber *keys = @(seqNos);
         ZZPingDetails *pings = (ZZPingDetails *)self.pings[[keys stringValue]];

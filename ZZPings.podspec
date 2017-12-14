@@ -20,19 +20,19 @@ Pod::Spec.new do |s|
   s.summary      = "ZZPings  return rtt and ttl for you and you are able to tell him the count of packets to send ."
 
 
-  s.homepage     = "https://avinashtag@github.com/avinashtag/ZZPings"
+  s.homepage     = "https://code.rsint.net/tag_a/ZZPings"
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
 
 
-  s.author             = { "Avinash Tag" => "avi.tag@gmail.com" }
+  s.author             = { "Avinash Tag" => "avinash.tag@rohde-schwarz.com" }
    s.ios.deployment_target = "8.1"
 s.osx.deployment_target = "10.10"
 
 
 
-  s.source       = { :git => "https://avinashtag@github.com/avinashtag/ZZPings.git", :tag => "1.0.2" }
+  s.source       = { :git => "https://code.rsint.net/tag_a/ZZPings.git", :tag => "1.0.2" }
 
 
   s.source_files  = "ZZPings", "ZZPings/**/*.{h,m}"

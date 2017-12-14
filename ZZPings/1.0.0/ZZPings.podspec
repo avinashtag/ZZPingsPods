@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.homepage     = "https://github.com/avinashtag/ZZPings"
+  s.homepage     = "https://code.rsint.net/tag_a/ZZPings"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -50,10 +50,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "Avinash Tag" => "avi.tag@gmail.com" }
+  s.author             = { "Avinash Tag" => "avinash.tag@rohde-schwarz.com" }
   # Or just: s.author    = "Avinash Tag"
-  # s.authors            = { "Avinash Tag" => "avi.tag@gmail.com" }
-  # s.social_media_url   = "http://twitter.com/Avinash Tag"
+  # s.authors            = { "Avinash Tag" => "avinash.tag@rohde-shcwarz.com" }
+  # s.social_media_url   = ""
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/avinashtag/ZZPings.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://code.rsint.net/tag_a/ZZPings.git", :tag => "1.0.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
