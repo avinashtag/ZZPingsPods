@@ -282,7 +282,52 @@ static NSArray *prev = nil;
     self = [super init];
     if (self != nil) {
         self->_hostName    = [hostName copy];
-        self->_hostAddress = [convertAddressToData(address,[address containsString:@":"]) copy];
+        if ([address containsString:@":"]) {
+            self->_isIPv6 = YES;
+            CFStreamError streamError;
+
+            CFHostRef hostRef = CFHostCreateWithName(NULL, (__bridge CFStringRef)address);
+            /*
+             * CFHostCreateWithName will return a null result in certain cases.
+             * CFHostStartInfoResolution will return YES if _hostRef is null.
+             */
+            if (hostRef) {
+                CFHostStartInfoResolution(hostRef, kCFHostAddresses, &streamError);
+            }
+
+            //get the first IPv4 or IPv6 address
+            Boolean resolved;
+            const struct sockaddr *addrPtr;
+            NSArray *addresses = (__bridge NSArray *)CFHostGetAddressing(hostRef, &resolved);
+            if (resolved && (addresses != nil)) {
+                resolved = false;
+                for (NSData *address in addresses) {
+                    const struct sockaddr *anAddrPtr = (const struct sockaddr *)[address bytes];
+                    
+                    if ([address length] >= sizeof(struct sockaddr) &&
+                        (anAddrPtr->sa_family == AF_INET || anAddrPtr->sa_family == AF_INET6)) {
+                        
+                        resolved = true;
+                        addrPtr = anAddrPtr;
+                        self->_hostAddress = address;
+                        struct sockaddr_in *sin = (struct sockaddr_in *)anAddrPtr;
+                        char str[INET6_ADDRSTRLEN];
+                        inet_ntop(anAddrPtr->sa_family, &(sin->sin_addr), str, INET6_ADDRSTRLEN);
+                        NSLog(@"check ping address%@",[[NSString alloc] initWithUTF8String:str]) ;
+
+                        break;
+                    }
+                }
+            }
+            if (hostRef) {
+                CFRelease(hostRef);
+            }
+
+        }
+        else{
+            self->_hostAddress = [convertAddressToData(address,NO) copy];
+
+        }
 //        [[self convertToAddress:address] copy];
         self->_identifier  = (uint16_t) arc4random();
         self.pings = [[NSMutableDictionary alloc]init];
