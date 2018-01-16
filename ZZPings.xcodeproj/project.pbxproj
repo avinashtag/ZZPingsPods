@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6A0D90E91C4E06E90075F8AB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6A0D90E81C4E06E90075F8AB /* LICENSE */; };
-		AD13F9BB1C4D5CFD006BAE5B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD13F9BA1C4D5CFD006BAE5B /* CFNetwork.framework */; };
 		AD7DD1971C4D51E000BBB7C7 /* ZZPings.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD1961C4D51E000BBB7C7 /* ZZPings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD7DD1A11C4D521E00BBB7C7 /* ZZPing.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD19E1C4D521E00BBB7C7 /* ZZPing.h */; };
 		AD7DD1A21C4D521E00BBB7C7 /* ZZPing.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7DD19F1C4D521E00BBB7C7 /* ZZPing.m */; };
@@ -17,11 +16,43 @@
 		B93EA4001EADC97A00B61EF1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93EA3FF1EADC97A00B61EF1 /* CFNetwork.framework */; };
 		B93EA4011EADC99300B61EF1 /* ZZPing.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD19E1C4D521E00BBB7C7 /* ZZPing.h */; };
 		B93EA4021EADC99300B61EF1 /* ICMPHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = AD7DD1A01C4D521E00BBB7C7 /* ICMPHeader.h */; };
+		B9B3E11F200DCEB7005143ED /* iperf_udp.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E0FF200DCEB7005143ED /* iperf_udp.h */; };
+		B9B3E120200DCEB7005143ED /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E100200DCEB7005143ED /* timer.c */; };
+		B9B3E121200DCEB7005143ED /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E101200DCEB7005143ED /* version.h */; };
+		B9B3E122200DCEB7005143ED /* net.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E102200DCEB7005143ED /* net.h */; };
+		B9B3E123200DCEB7005143ED /* iperf_sctp.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E103200DCEB7005143ED /* iperf_sctp.h */; };
+		B9B3E124200DCEB7005143ED /* cjson.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E104200DCEB7005143ED /* cjson.h */; };
+		B9B3E125200DCEB7005143ED /* iperf_error.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E105200DCEB7005143ED /* iperf_error.c */; };
+		B9B3E126200DCEB7005143ED /* iperf_client_api.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E106200DCEB7005143ED /* iperf_client_api.c */; };
+		B9B3E127200DCEB7005143ED /* iperf_config.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E107200DCEB7005143ED /* iperf_config.h */; };
+		B9B3E128200DCEB7005143ED /* iperf_locale.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E108200DCEB7005143ED /* iperf_locale.h */; };
+		B9B3E129200DCEB7005143ED /* iperf_tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E109200DCEB7005143ED /* iperf_tcp.c */; };
+		B9B3E12A200DCEB7005143ED /* tcp_window_size.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E10A200DCEB7005143ED /* tcp_window_size.h */; };
+		B9B3E12B200DCEB7005143ED /* units.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E10B200DCEB7005143ED /* units.c */; };
+		B9B3E12C200DCEB7005143ED /* iperf_util.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E10C200DCEB7005143ED /* iperf_util.h */; };
+		B9B3E12D200DCEB7005143ED /* iperf_api.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E10D200DCEB7005143ED /* iperf_api.h */; };
+		B9B3E12E200DCEB7005143ED /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E10E200DCEB7005143ED /* timer.h */; };
+		B9B3E12F200DCEB7005143ED /* iperf_udp.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E10F200DCEB7005143ED /* iperf_udp.c */; };
+		B9B3E130200DCEB7005143ED /* tcp_info.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E110200DCEB7005143ED /* tcp_info.c */; };
+		B9B3E131200DCEB7005143ED /* iperf.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E111200DCEB7005143ED /* iperf.h */; };
+		B9B3E132200DCEB7005143ED /* cjson.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E112200DCEB7005143ED /* cjson.c */; };
+		B9B3E133200DCEB7005143ED /* iperf_sctp.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E113200DCEB7005143ED /* iperf_sctp.c */; };
+		B9B3E134200DCEB7005143ED /* iperf_server_api.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E114200DCEB7005143ED /* iperf_server_api.c */; };
+		B9B3E135200DCEB7005143ED /* net.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E115200DCEB7005143ED /* net.c */; };
+		B9B3E136200DCEB7005143ED /* portable_endian.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E116200DCEB7005143ED /* portable_endian.h */; };
+		B9B3E137200DCEB7005143ED /* iperf_locale.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E117200DCEB7005143ED /* iperf_locale.c */; };
+		B9B3E138200DCEB7005143ED /* iperf_util.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E118200DCEB7005143ED /* iperf_util.c */; };
+		B9B3E139200DCEB7005143ED /* iperf_api.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E119200DCEB7005143ED /* iperf_api.c */; };
+		B9B3E13A200DCEB7005143ED /* flowlabel.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E11A200DCEB7005143ED /* flowlabel.h */; };
+		B9B3E13B200DCEB7005143ED /* tcp_window_size.c in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E11B200DCEB7005143ED /* tcp_window_size.c */; };
+		B9B3E13C200DCEB7005143ED /* units.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E11C200DCEB7005143ED /* units.h */; };
+		B9B3E13D200DCEB7005143ED /* queue.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E11D200DCEB7005143ED /* queue.h */; };
+		B9B3E13E200DCEB7005143ED /* iperf_tcp.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E11E200DCEB7005143ED /* iperf_tcp.h */; };
+		B9B3E141200DD0B8005143ED /* PQAIPerfHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B3E140200DD0B8005143ED /* PQAIPerfHeader.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6A0D90E81C4E06E90075F8AB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		AD13F9BA1C4D5CFD006BAE5B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		AD7DD1931C4D51E000BBB7C7 /* ZZPings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZZPings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7DD1961C4D51E000BBB7C7 /* ZZPings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZPings.h; sourceTree = "<group>"; };
 		AD7DD1981C4D51E000BBB7C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,6 +65,40 @@
 		B93EA3F81EADC96100B61EF1 /* ZZPingsMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZPingsMac.h; sourceTree = "<group>"; };
 		B93EA3F91EADC96100B61EF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B93EA3FF1EADC97A00B61EF1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		B9B3E0FF200DCEB7005143ED /* iperf_udp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iperf_udp.h; sourceTree = "<group>"; };
+		B9B3E100200DCEB7005143ED /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
+		B9B3E101200DCEB7005143ED /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		B9B3E102200DCEB7005143ED /* net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = net.h; sourceTree = "<group>"; };
+		B9B3E103200DCEB7005143ED /* iperf_sctp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iperf_sctp.h; sourceTree = "<group>"; };
+		B9B3E104200DCEB7005143ED /* cjson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cjson.h; sourceTree = "<group>"; };
+		B9B3E105200DCEB7005143ED /* iperf_error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iperf_error.c; sourceTree = "<group>"; };
+		B9B3E106200DCEB7005143ED /* iperf_client_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iperf_client_api.c; sourceTree = "<group>"; };
+		B9B3E107200DCEB7005143ED /* iperf_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iperf_config.h; sourceTree = "<group>"; };
+		B9B3E108200DCEB7005143ED /* iperf_locale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iperf_locale.h; sourceTree = "<group>"; };
+		B9B3E109200DCEB7005143ED /* iperf_tcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iperf_tcp.c; sourceTree = "<group>"; };
+		B9B3E10A200DCEB7005143ED /* tcp_window_size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_window_size.h; sourceTree = "<group>"; };
+		B9B3E10B200DCEB7005143ED /* units.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = units.c; sourceTree = "<group>"; };
+		B9B3E10C200DCEB7005143ED /* iperf_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iperf_util.h; sourceTree = "<group>"; };
+		B9B3E10D200DCEB7005143ED /* iperf_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iperf_api.h; sourceTree = "<group>"; };
+		B9B3E10E200DCEB7005143ED /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timer.h; sourceTree = "<group>"; };
+		B9B3E10F200DCEB7005143ED /* iperf_udp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iperf_udp.c; sourceTree = "<group>"; };
+		B9B3E110200DCEB7005143ED /* tcp_info.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcp_info.c; sourceTree = "<group>"; };
+		B9B3E111200DCEB7005143ED /* iperf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iperf.h; sourceTree = "<group>"; };
+		B9B3E112200DCEB7005143ED /* cjson.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cjson.c; sourceTree = "<group>"; };
+		B9B3E113200DCEB7005143ED /* iperf_sctp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iperf_sctp.c; sourceTree = "<group>"; };
+		B9B3E114200DCEB7005143ED /* iperf_server_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iperf_server_api.c; sourceTree = "<group>"; };
+		B9B3E115200DCEB7005143ED /* net.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = net.c; sourceTree = "<group>"; };
+		B9B3E116200DCEB7005143ED /* portable_endian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = portable_endian.h; sourceTree = "<group>"; };
+		B9B3E117200DCEB7005143ED /* iperf_locale.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iperf_locale.c; sourceTree = "<group>"; };
+		B9B3E118200DCEB7005143ED /* iperf_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iperf_util.c; sourceTree = "<group>"; };
+		B9B3E119200DCEB7005143ED /* iperf_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iperf_api.c; sourceTree = "<group>"; };
+		B9B3E11A200DCEB7005143ED /* flowlabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flowlabel.h; sourceTree = "<group>"; };
+		B9B3E11B200DCEB7005143ED /* tcp_window_size.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcp_window_size.c; sourceTree = "<group>"; };
+		B9B3E11C200DCEB7005143ED /* units.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = units.h; sourceTree = "<group>"; };
+		B9B3E11D200DCEB7005143ED /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue.h; sourceTree = "<group>"; };
+		B9B3E11E200DCEB7005143ED /* iperf_tcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iperf_tcp.h; sourceTree = "<group>"; };
+		B9B3E13F200DD07E005143ED /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CFNetwork.framework; sourceTree = "<group>"; };
+		B9B3E140200DD0B8005143ED /* PQAIPerfHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PQAIPerfHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD13F9BB1C4D5CFD006BAE5B /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +123,7 @@
 		AD7DD1891C4D51E000BBB7C7 = {
 			isa = PBXGroup;
 			children = (
-				AD13F9BA1C4D5CFD006BAE5B /* CFNetwork.framework */,
+				B9B3E0FE200DCEB7005143ED /* Classes */,
 				AD7DD1951C4D51E000BBB7C7 /* ZZPings */,
 				B93EA3E81EA8CA0D00B61EF1 /* ZZPingsMac */,
 				B93EA3F71EADC96100B61EF1 /* ZZPingsMac */,
@@ -84,6 +148,7 @@
 				AD7DD1961C4D51E000BBB7C7 /* ZZPings.h */,
 				AD7DD19E1C4D521E00BBB7C7 /* ZZPing.h */,
 				AD7DD19F1C4D521E00BBB7C7 /* ZZPing.m */,
+				B9B3E140200DD0B8005143ED /* PQAIPerfHeader.h */,
 				AD7DD1A01C4D521E00BBB7C7 /* ICMPHeader.h */,
 				AD7DD1981C4D51E000BBB7C7 /* Info.plist */,
 			);
@@ -111,9 +176,49 @@
 		B93EA3FE1EADC97900B61EF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B9B3E13F200DD07E005143ED /* CFNetwork.framework */,
 				B93EA3FF1EADC97A00B61EF1 /* CFNetwork.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B9B3E0FE200DCEB7005143ED /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B9B3E0FF200DCEB7005143ED /* iperf_udp.h */,
+				B9B3E100200DCEB7005143ED /* timer.c */,
+				B9B3E101200DCEB7005143ED /* version.h */,
+				B9B3E102200DCEB7005143ED /* net.h */,
+				B9B3E103200DCEB7005143ED /* iperf_sctp.h */,
+				B9B3E104200DCEB7005143ED /* cjson.h */,
+				B9B3E105200DCEB7005143ED /* iperf_error.c */,
+				B9B3E106200DCEB7005143ED /* iperf_client_api.c */,
+				B9B3E107200DCEB7005143ED /* iperf_config.h */,
+				B9B3E108200DCEB7005143ED /* iperf_locale.h */,
+				B9B3E109200DCEB7005143ED /* iperf_tcp.c */,
+				B9B3E10A200DCEB7005143ED /* tcp_window_size.h */,
+				B9B3E10B200DCEB7005143ED /* units.c */,
+				B9B3E10C200DCEB7005143ED /* iperf_util.h */,
+				B9B3E10D200DCEB7005143ED /* iperf_api.h */,
+				B9B3E10E200DCEB7005143ED /* timer.h */,
+				B9B3E10F200DCEB7005143ED /* iperf_udp.c */,
+				B9B3E110200DCEB7005143ED /* tcp_info.c */,
+				B9B3E111200DCEB7005143ED /* iperf.h */,
+				B9B3E112200DCEB7005143ED /* cjson.c */,
+				B9B3E113200DCEB7005143ED /* iperf_sctp.c */,
+				B9B3E114200DCEB7005143ED /* iperf_server_api.c */,
+				B9B3E115200DCEB7005143ED /* net.c */,
+				B9B3E116200DCEB7005143ED /* portable_endian.h */,
+				B9B3E117200DCEB7005143ED /* iperf_locale.c */,
+				B9B3E118200DCEB7005143ED /* iperf_util.c */,
+				B9B3E119200DCEB7005143ED /* iperf_api.c */,
+				B9B3E11A200DCEB7005143ED /* flowlabel.h */,
+				B9B3E11B200DCEB7005143ED /* tcp_window_size.c */,
+				B9B3E11C200DCEB7005143ED /* units.h */,
+				B9B3E11D200DCEB7005143ED /* queue.h */,
+				B9B3E11E200DCEB7005143ED /* iperf_tcp.h */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,9 +228,27 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B3E122200DCEB7005143ED /* net.h in Headers */,
+				B9B3E141200DD0B8005143ED /* PQAIPerfHeader.h in Headers */,
+				B9B3E121200DCEB7005143ED /* version.h in Headers */,
+				B9B3E124200DCEB7005143ED /* cjson.h in Headers */,
 				AD7DD1971C4D51E000BBB7C7 /* ZZPings.h in Headers */,
+				B9B3E13D200DCEB7005143ED /* queue.h in Headers */,
+				B9B3E13E200DCEB7005143ED /* iperf_tcp.h in Headers */,
 				AD7DD1A11C4D521E00BBB7C7 /* ZZPing.h in Headers */,
+				B9B3E12D200DCEB7005143ED /* iperf_api.h in Headers */,
 				AD7DD1A31C4D521E00BBB7C7 /* ICMPHeader.h in Headers */,
+				B9B3E127200DCEB7005143ED /* iperf_config.h in Headers */,
+				B9B3E128200DCEB7005143ED /* iperf_locale.h in Headers */,
+				B9B3E131200DCEB7005143ED /* iperf.h in Headers */,
+				B9B3E11F200DCEB7005143ED /* iperf_udp.h in Headers */,
+				B9B3E12E200DCEB7005143ED /* timer.h in Headers */,
+				B9B3E13C200DCEB7005143ED /* units.h in Headers */,
+				B9B3E12C200DCEB7005143ED /* iperf_util.h in Headers */,
+				B9B3E123200DCEB7005143ED /* iperf_sctp.h in Headers */,
+				B9B3E136200DCEB7005143ED /* portable_endian.h in Headers */,
+				B9B3E12A200DCEB7005143ED /* tcp_window_size.h in Headers */,
+				B9B3E13A200DCEB7005143ED /* flowlabel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +362,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B3E133200DCEB7005143ED /* iperf_sctp.c in Sources */,
+				B9B3E129200DCEB7005143ED /* iperf_tcp.c in Sources */,
+				B9B3E134200DCEB7005143ED /* iperf_server_api.c in Sources */,
+				B9B3E139200DCEB7005143ED /* iperf_api.c in Sources */,
+				B9B3E126200DCEB7005143ED /* iperf_client_api.c in Sources */,
+				B9B3E138200DCEB7005143ED /* iperf_util.c in Sources */,
 				AD7DD1A21C4D521E00BBB7C7 /* ZZPing.m in Sources */,
+				B9B3E132200DCEB7005143ED /* cjson.c in Sources */,
+				B9B3E12B200DCEB7005143ED /* units.c in Sources */,
+				B9B3E125200DCEB7005143ED /* iperf_error.c in Sources */,
+				B9B3E13B200DCEB7005143ED /* tcp_window_size.c in Sources */,
+				B9B3E130200DCEB7005143ED /* tcp_info.c in Sources */,
+				B9B3E135200DCEB7005143ED /* net.c in Sources */,
+				B9B3E12F200DCEB7005143ED /* iperf_udp.c in Sources */,
+				B9B3E120200DCEB7005143ED /* timer.c in Sources */,
+				B9B3E137200DCEB7005143ED /* iperf_locale.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +597,7 @@
 				B93EA3FD1EADC96100B61EF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
