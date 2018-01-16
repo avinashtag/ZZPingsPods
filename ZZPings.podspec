@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ZZPings"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "ZZPings  return rtt and ttl for you and you are able to tell him the count of packets to send ."
 
 
@@ -32,7 +32,7 @@ s.osx.deployment_target = "10.10"
 
 
 
-  s.source       = { :git => "https://code.rsint.net/tag_a/ZZPings.git", :tag => "1.0.2" }
+  s.source       = { :git => "https://code.rsint.net/tag_a/ZZPings.git", :tag => "1.0.3" }
 
 
   s.source_files  = "ZZPings", "ZZPings/**/*.{h,m}"
